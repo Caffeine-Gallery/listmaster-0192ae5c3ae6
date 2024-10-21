@@ -1,20 +1,26 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: red;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f06292, #ba68c8); /* Gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0; /* Remove default margin */
 }
 
 .container {
-  max-width: 500px;
-  margin: 50px auto;
   background: #fff;
-  padding: 20px 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px #ccc;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 500px;
+  width: 90%; /* Responsive width */
 }
 
 h1 {
   text-align: center;
   color: #333;
+  margin-bottom: 20px;
 }
 
 .input-group {
@@ -24,21 +30,32 @@ h1 {
 
 #item-input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s; /* Add transition */
+}
+
+#item-input:focus {
+  border-color: #ba68c8; /* Highlight on focus */
+  outline: none;
 }
 
 #add-button {
-  background-color: #28a745;
+  background-color: #ba68c8;
   color: #fff;
   border: none;
-  padding: 0 20px;
-  font-size: 24px;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s; /* Add transition */
+  margin-left: 10px;
 }
 
 #add-button:hover {
-  background-color: #218838;
+  background-color: #9c27b0;
 }
 
 #items-list {
@@ -50,15 +67,21 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e9ecef;
-  padding: 10px;
-  margin-bottom: 5px;
-  border-radius: 4px;
+  background: #f7f7f7;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s; /* Add transitions */
+}
+
+#items-list li:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.02); /* Subtle scale effect on hover */
 }
 
 #items-list li.completed span {
   text-decoration: line-through;
-  color: #6c757d;
+  color: #999;
 }
 
 #items-list li button {
@@ -67,6 +90,7 @@ h1 {
   color: #dc3545;
   font-size: 20px;
   cursor: pointer;
+  transition: color 0.3s; /* Add transition */
 }
 
 #items-list li button:hover {
