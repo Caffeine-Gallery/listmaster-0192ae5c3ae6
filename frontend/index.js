@@ -26,13 +26,16 @@ async function addItem() {
   const itemInput = document.getElementById('item-input');
   const itemName = itemInput.value.trim();
   if (itemName) {
+    showLoading();
     await backend.addItem(itemName);
     itemInput.value = '';
     await loadItems();
+    hideLoading();
   }
 }
 
 async function loadItems() {
+  showLoading();
   const itemsList = document.getElementById('items-list');
   itemsList.innerHTML = '';
   const items = await backend.getItems();
@@ -44,21 +47,34 @@ async function loadItems() {
     const itemText = document.createElement('span');
     itemText.textContent = item.name;
     itemText.addEventListener('click', async () => {
+      showLoading();
       await backend.toggleItem(item.id);
       await loadItems();
+      hideLoading();
     });
 
     const deleteButton = document.createElement('button');
     deleteButton.innerHTML = '&#10005;';
     deleteButton.addEventListener('click', async () => {
+      showLoading();
       await backend.deleteItem(item.id);
       await loadItems();
+      hideLoading();
     });
 
     listItem.appendChild(itemText);
     listItem.appendChild(deleteButton);
     itemsList.appendChild(listItem);
   });
+  hideLoading();
+}
+
+function showLoading() {
+  document.getElementById('loading').style.display = 'block';
+}
+
+function hideLoading() {
+  document.getElementById('loading').style.display = 'none';
 }
 
 window.onload = init;
